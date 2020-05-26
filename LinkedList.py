@@ -48,4 +48,5 @@ if __name__ == '__main__':
     link.delete(3)
     link.desc()
     link.delete(9)
+    link.delete(7)
     link.desc()
