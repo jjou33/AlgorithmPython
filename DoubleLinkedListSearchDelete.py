@@ -12,7 +12,7 @@ class NodeMgnt():
         self.tail = self.head
         self.count = 0
 
-    def insert(self,data):
+    def insertNode(self,data):
         if self.head == '':
             self.head = Node(data)
             self.tail = self.head
@@ -25,7 +25,7 @@ class NodeMgnt():
             newNode.prev = node
             self.tail = newNode
 
-    def SearchNode(self,side,data):
+    def searchNode(self,side,data):
         if self.head == '':
             self.head = Node(data)
             self.tail = self.head
@@ -52,6 +52,23 @@ class NodeMgnt():
                     node = node.prev
                     self.count += 1
 
+    def deleteNode(self,data):
+        if self.head == None:
+            print ("해당 노드가 없습니다.")
+        else:
+            if self.head.data == data:
+                temp = self.head
+                self.head = self.head.next
+            else:
+                node = self.head
+                while node.next:
+                    if node.data == data:
+                        temp = node
+                        node.next = node.next.next
+                        del node
+                        return
+                    else:
+                        node = node.next
 
     def desc(self):
         node = self.head
@@ -63,8 +80,12 @@ if __name__ == '__main__':
     testLinkedList = NodeMgnt(0)
     testLinkedList.desc()
     for i in range(1,10):
-        testLinkedList.insert(i)
+        testLinkedList.insertNode(i)
     testLinkedList.desc()
-    testLinkedList.SearchNode("next", 4)
-    testLinkedList.SearchNode("prev", 0)
-    testLinkedList.SearchNode("prev", 9)
+    testLinkedList.searchNode("next", 4)
+    testLinkedList.searchNode("prev", 0)
+    testLinkedList.searchNode("prev", 9)
+    print("-----------")
+    testLinkedList.deleteNode(0)
+    testLinkedList.deleteNode(2)
+    testLinkedList.desc()
