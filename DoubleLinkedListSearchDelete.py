@@ -62,10 +62,10 @@ class NodeMgnt():
             else:
                 node = self.head
                 while node.next:
-                    if node.data == data:
-                        temp = node
+                    if node.next.data == data:
+                        temp = node.next
                         node.next = node.next.next
-                        del node
+                        del temp
                         return
                     else:
                         node = node.next
@@ -87,5 +87,10 @@ if __name__ == '__main__':
     testLinkedList.searchNode("prev", 9)
     print("-----------")
     testLinkedList.deleteNode(0)
+    testLinkedList.desc()
+    print("-----------")
     testLinkedList.deleteNode(2)
+    testLinkedList.desc()
+    print("-----------")
+    testLinkedList.deleteNode(8)
     testLinkedList.desc()
