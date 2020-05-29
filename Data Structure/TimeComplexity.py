@@ -17,4 +17,23 @@ for i in range(300):
         for index in range(n):
             print(index)
 
+## 2n^2 + 3n 이라면 가장 높은 차원의 차수로 따른다 O(n^2)
+
+class TimeComplexity:
+    def sum_all(self, n):
+        total = 0
+        for num in range(1, n+1):
+            total += num
+        return total
+
+    def sum_all2(self, n):
+        return int(n * (n + 1) / 2)
+
+
+if __name__ == '__main__':
+    a = TimeComplexity()
+    result = a.sum_all(100)
+    print("-----", result)
+    ##result = a.sum_all2(100)
+    print("-----", result)
 
