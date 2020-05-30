@@ -57,18 +57,44 @@ class NodeMgnt():
             print ("해당 노드가 없습니다.")
         else:
             if self.head.data == data:
-                temp = self.head
+                after_node = self.head
                 self.head = self.head.next
             else:
                 node = self.head
                 while node.next:
-                    if node.next.data == data:
+                    if node.next.data == data :
                         temp = node.next
                         node.next = node.next.next
                         del temp
-                        return
                     else:
                         node = node.next
+
+
+    def insert_after(self,nodeBefore, data):
+        if self.head == None :
+            self.head = Node(data)
+            print ("노드가 없어 첫번째 데이터로 생성")
+            return True
+        else:
+            node = self.head
+            while node.data != nodeBefore :
+                node = node.next
+                if node.next == Node:
+                    return False
+            newNode = Node(data)
+            print ("newNode >>" , newNode.data, newNode.next, newNode.prev)
+            print("originNode >>", node.prev.data, node.data, node.next.data)
+            after_node = node.next
+            newNode.next = after_node
+            newNode.prev = node
+            print("newNode >>", newNode.prev.data, newNode.data, newNode.next.data)
+            node.next = newNode
+            print("originNode >>", node.prev.data, node.data, node.next.data)
+            print("afterNode >>", after_node.prev.data, after_node.data, after_node.next.data)
+            after_node.prev = newNode
+            print("newNode >>", newNode.prev.data, newNode.data, newNode.next.data)
+            print("afterNode >>", after_node.prev.data, after_node.data, after_node.next.data)
+
 
     def desc(self):
         node = self.head
@@ -82,15 +108,16 @@ if __name__ == '__main__':
     for i in range(1,10):
         testLinkedList.insertNode(i)
     testLinkedList.desc()
-    testLinkedList.searchNode("next", 4)
-    testLinkedList.searchNode("prev", 0)
-    testLinkedList.searchNode("prev", 9)
-    print("-----------")
-    testLinkedList.deleteNode(0)
-    testLinkedList.desc()
-    print("-----------")
-    testLinkedList.deleteNode(2)
-    testLinkedList.desc()
-    print("-----------")
+    # testLinkedList.searchNode("next", 4)
+    # testLinkedList.searchNode("prev", 0)
+    # testLinkedList.searchNode("prev", 9)
+    # print("-----------")
+    # testLinkedList.deleteNode(0)
+    # testLinkedList.desc()
+    # print("-----------")
+    # testLinkedList.deleteNode(2)
+    # testLinkedList.desc()
+    # print("-----------")
     testLinkedList.deleteNode(8)
     testLinkedList.desc()
+    testLinkedList.insert_after(3, 10)
