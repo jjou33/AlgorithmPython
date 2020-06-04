@@ -1,12 +1,13 @@
 class Hash:
     def __init__(self, size):
         self.hash_table = list([0 for i in range(size)])
+        self.size = size
 
-    def get_key(self,data):
+    def get_key(self, data):
         return hash(data)
 
-    def hash_function(self,key):
-        return key % 8
+    def hash_function(self, key):
+        return key % self.size
 
     def save_data(self,data,value):
         hash_address = self.hash_function(self.get_key(data))
