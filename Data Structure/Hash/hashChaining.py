@@ -16,7 +16,6 @@ class Hash:
         self.size = size
 
     def get_key(self,data):
-        print(hash(data))
         return hash(data)
 
     def hash_function(self, key):
@@ -26,21 +25,21 @@ class Hash:
         index_key = self.get_key(data)
         hash_address = self.hash_function(index_key)
         if self.hash_table[hash_address] != 0:
-            for index in range(len(hash_table[hash_address])):
-                if hash_table[hash_address][index][0] == index_key:
-                    hash_table[hash_address][index][1] = value
+            for index in range(len(self.hash_table[hash_address])):
+                if self.hash_table[hash_address][index][0] == index_key:
+                    self.hash_table[hash_address][index][1] = value
                     return
-            hash_table[hash_address].append([index_key, value])
+            self.hash_table[hash_address].append([index_key, value])
         else:
-            hash_table[hash_address].append([index_key, value])
+            self.hash_table[hash_address] = [[index_key, value]]
 
     def read_data(self,data):
         index_key = self.get_key(data)
         hash_address = self.hash_function(index_key)
-        if hash_table[hash_address] != 0:
-            for index in range(len(hash_table[hash_address])):
-                if hash_table[hash_address][index][0] == index_key:
-                    return hash_table[hash_address][index][1]
+        if self.hash_table[hash_address] != 0:
+            for index in range(len(self.hash_table[hash_address])):
+                if self.hash_table[hash_address][index][0] == index_key:
+                    return self.hash_table[hash_address][index][1]
             return None
         else:
             return None
@@ -50,6 +49,6 @@ if __name__ == '__main__':
     hash_table = Hash(8)
     hash_table.save_data('Dd', '0102030203')
     hash_table.save_data('Date', '0102030203')
-    hash_table.read_data('Dd')
+    print(hash_table.read_data('Dd'))
 
 
